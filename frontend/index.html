@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>青筮记｜玄学工具</title>
+  <link rel="stylesheet" href="/app/globals.css">
+  <style>
+    body{background:linear-gradient(180deg,#dfece5 0,#f5f2e9 410px,#f2efe7 100%)}
+    main{padding-bottom:96px}.home-head{display:flex;justify-content:space-between;align-items:center;padding:14px 2px 20px}.home-brand{display:flex;align-items:center;gap:12px}.home-brand .brand-mark{width:48px;height:48px;border-radius:15px 15px 15px 4px;font-size:25px}.home-brand h1{font-size:22px;margin:0 0 2px}.round-btn{width:42px;height:42px;border:1px solid #fff;background:#ffffffa8;border-radius:14px;color:var(--ink);font-size:18px;box-shadow:0 7px 20px #1c443420}
+    .welcome{position:relative;overflow:hidden;padding:24px 22px;color:#f5edda;background:linear-gradient(135deg,#173a32,#2e6958);border-radius:25px;box-shadow:0 18px 40px #173a3235}.welcome:after{content:"乾\A坤";white-space:pre;position:absolute;right:18px;top:4px;color:#fff1;font-family:serif;font-size:58px;line-height:.85}.welcome .eyebrow{color:#d5b46f}.welcome h2{font-size:25px;margin:8px 0}.welcome p{max-width:280px;margin:0;color:#d7e4dd;font-size:12px;line-height:1.7}.today{display:flex;gap:8px;margin-top:18px}.today span{padding:7px 10px;background:#ffffff12;border:1px solid #ffffff18;border-radius:10px;font-size:11px}
+    .quick{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:14px}.quick a{display:flex;align-items:center;gap:12px;text-decoration:none;padding:17px 15px;background:#fff;border-radius:18px;box-shadow:0 8px 25px #203d3214}.quick a:first-child{background:#f6ead0}.quick-icon{width:43px;height:43px;display:grid;place-items:center;border-radius:14px;background:var(--ink);color:#f5dfaa;font-family:serif;font-size:22px}.quick a:last-child .quick-icon{background:#e4eee8;color:var(--jade)}.quick b{display:block;color:var(--ink);font-size:14px}.quick small{color:#89958f;font-size:10px}
+    .home-section{margin-top:25px}.home-section-head{display:flex;align-items:end;justify-content:space-between;margin:0 4px 12px}.home-section-head h2{font-size:19px;margin:0;color:var(--ink)}.home-section-head a{color:#89958f;font-size:11px;text-decoration:none}
+    .tool-groups{display:grid;gap:14px}.tool-row-label{display:flex;align-items:center;gap:8px;margin:0 3px 7px;color:#8b9892;font-size:10px}.tool-row-label:after{content:"";height:1px;flex:1;background:#dfe5e1}.tools{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.tool{position:relative;text-align:center;text-decoration:none;padding:15px 3px 13px;background:#fffdf9;border:1px solid #fff;border-radius:17px;box-shadow:0 7px 20px #203d3212}.tool-icon{width:44px;height:44px;display:grid;place-items:center;margin:0 auto 9px;border-radius:15px;background:#e8f0eb;color:var(--jade);font-family:serif;font-size:19px}.tool:nth-child(2n) .tool-icon{background:#f3ead9;color:#9a7135}.tool b{display:block;color:#40554e;font-size:11px}.tool small{display:block;margin-top:3px;color:#a2aca8;font-size:8px}.tag{position:absolute;right:5px;top:5px;padding:2px 4px;border-radius:5px;background:#bb8d40;color:white;font-size:7px}
+    .recent{display:flex;align-items:center;gap:13px;padding:16px;background:#fff;border-radius:18px;box-shadow:0 8px 25px #203d3212}.recent-symbol{width:48px;height:48px;display:grid;place-items:center;border:1px solid #d9e3dd;border-radius:50%;color:var(--jade);font-size:20px}.recent-info{flex:1}.recent-info b{display:block;color:var(--ink);font-size:13px}.recent-info p{margin:4px 0 0;color:#8a9792;font-size:10px}.recent>a{color:var(--gold);text-decoration:none;font-size:12px}
+    .wisdom{padding:18px;border-left:3px solid var(--gold);background:#f6f0e1;border-radius:5px 18px 18px 5px;color:#6c644f;font-size:12px;line-height:1.8}.wisdom b{color:#765d2e}.bottom-nav{position:fixed;z-index:10;left:50%;bottom:10px;transform:translateX(-50%);width:min(calc(100% - 24px),496px);display:grid;grid-template-columns:repeat(4,1fr);padding:9px 6px calc(9px + env(safe-area-inset-bottom));background:#15382ff2;border:1px solid #ffffff18;border-radius:21px;box-shadow:0 14px 35px #173a3245;backdrop-filter:blur(15px)}.bottom-nav a{text-align:center;text-decoration:none;color:#91aaa1;font-size:9px}.bottom-nav span{display:block;margin-bottom:3px;font-size:18px}.bottom-nav a.active{color:#f2dba5}
+    @media(max-width:380px){.tools{grid-template-columns:repeat(4,1fr);gap:6px}.tool{padding-inline:1px}.quick{grid-template-columns:1fr}.welcome{padding:21px 18px}}
+  </style>
+</head>
+<body><main>
+  <header class="home-head"><div class="home-brand"><div class="brand-mark">筮</div><div><p class="eyebrow">QING SHI JI</p><h1>青筮记</h1></div></div><button class="round-btn" aria-label="消息">◌</button></header>
+  <section class="welcome"><p class="eyebrow">玄门日课 · 今日宜静观</p><h2>见天地，见自己</h2><p>以古籍为根，以历法为尺。每一次推演，都保留清晰的时间口径与判断依据。</p><div class="today"><span id="solarDate">公历</span><span id="lunarDate">农历</span></div></section>
+  <div class="quick"><a href="/bazi.html"><span class="quick-icon">命</span><span><b>八字排盘</b><small>四柱 · 大运 · 神煞</small></span></a><a href="#" data-global-archives><span class="quick-icon">档</span><span><b>命理档案</b><small id="archiveCount">0 份已保存</small></span></a></div>
+  <section class="home-section"><div class="home-section-head"><h2>核心排盘</h2><a href="#">全部工具</a></div><div class="tool-groups">
+    <div class="tool-row"><div class="tool-row-label">命理</div><div class="tools">
+      <a class="tool" href="/chart.html"><span class="tag">已开放</span><span class="tool-icon">八</span><b>八字</b><small>子平命理</small></a>
+      <a class="tool" href="#" onclick="soon(event)"><span class="tool-icon">合</span><b>合盘</b><small>关系参合</small></a>
+      <a class="tool" href="#" onclick="soon(event)"><span class="tool-icon">紫</span><b>紫微</b><small>斗数命盘</small></a>
+      <a class="tool" href="#" onclick="soon(event)"><span class="tool-icon">七</span><b>七政</b><small>七政四余</small></a>
+    </div></div>
+    <div class="tool-row"><div class="tool-row-label">占卜</div><div class="tools">
+      <a class="tool" href="#" onclick="soon(event)"><span class="tool-icon">六</span><b>六爻</b><small>纳甲占断</small></a>
+      <a class="tool" href="#" onclick="soon(event)"><span class="tool-icon">梅</span><b>梅花</b><small>象数易学</small></a>
+      <a class="tool" href="#" onclick="soon(event)"><span class="tool-icon">奇</span><b>奇门</b><small>时空遁甲</small></a>
+      <a class="tool" href="#" onclick="soon(event)"><span class="tool-icon">壬</span><b>六壬</b><small>大六壬</small></a>
+    </div></div>
+    <div class="tool-row"><div class="tool-row-label">工具</div><div class="tools">
+      <a class="tool" href="#" onclick="soon(event)"><span class="tool-icon">历</span><b>黄历</b><small>节气择日</small></a>
+      <a class="tool" href="#" onclick="soon(event)"><span class="tool-icon">名</span><b>取名</b><small>五行用字</small></a>
+      <a class="tool" href="#" onclick="soon(event)"><span class="tool-icon">罗</span><b>罗盘</b><small>方位工具</small></a>
+      <a class="tool" href="#" onclick="soon(event)"><span class="tool-icon">其</span><b>其他</b><small>其他工具</small></a>
+    </div></div>
+  </div></section>
+  <section class="home-section"><div class="home-section-head"><h2>最近使用</h2><a href="#" data-global-archives>档案管理</a></div><div class="recent"><div class="recent-symbol">乾</div><div class="recent-info"><b id="recentName">暂无命理档案</b><p id="recentMeta">录入出生信息后，可在这里快速继续</p></div><a href="/bazi.html">进入</a></div></section>
+  <section class="home-section"><div class="home-section-head"><h2>筮记一言</h2></div><div class="wisdom"><b>“先观月令，论格推详。”</b><br>神煞只作旁证，格局、气势、调候与岁运仍是判断主线。</div></section>
+  <footer>青筮记 · 传统文化研究工具</footer>
+</main>
+<nav class="bottom-nav"><a class="active" href="/"><span>⌂</span>首页</a><a href="#" data-global-archives><span>▤</span>档案</a><a href="/bazi.html"><span>☷</span>应用</a><a href="#" onclick="soon(event)"><span>○</span>我的</a></nav>
+<script>
+const now=new Date(), pad=n=>String(n).padStart(2,'0');
+document.querySelector('#solarDate').textContent=`公历 ${now.getFullYear()}.${pad(now.getMonth()+1)}.${pad(now.getDate())}`;
+try{document.querySelector('#lunarDate').textContent=new Intl.DateTimeFormat('zh-CN-u-ca-chinese',{month:'long',day:'numeric'}).format(now)}catch{}
+const archives=JSON.parse(localStorage.getItem('qingshiji-archives')||'[]');
+document.querySelector('#archiveCount').textContent=`${archives.length} 份已保存`;
+if(archives[0]){document.querySelector('#recentName').textContent=archives[0].name;document.querySelector('#recentMeta').textContent=`${archives[0].gender==='男'?'乾造':'坤造'} · ${archives[0].location}`}
+function soon(e){e.preventDefault();alert('该工具正在整理古籍规则，后续开放。')}
+</script><script src="/app/archive-manager.js"></script></body></html>

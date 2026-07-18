@@ -1,0 +1,17 @@
+{
+  "name": "qingshiwendao-bazi",
+  "version": "1.0.0",
+  "description": "青筮问道移动端八字排盘与传统命理分析网页",
+  "type": "module",
+  "private": false,
+  "scripts": {
+    "start": "node backend/server.mjs",
+    "dev": "node --watch backend/server.mjs",
+    "check": "node --check backend/server.mjs && node --check frontend/app/archive-manager.js && node --check frontend/app/bazi-chart.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "UNLICENSED"
+}
+
