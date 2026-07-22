@@ -1,27 +1,189 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>青筮记｜八字信息录入</title><link rel="stylesheet" href="/app/globals.css"><style>
-.topbar{display:flex;align-items:center;justify-content:space-between;padding:8px 2px 18px}.topbar a,.icon-btn{width:42px;height:42px;display:grid;place-items:center;border:1px solid #fff;border-radius:14px;background:#ffffffb5;color:var(--ink);text-decoration:none;box-shadow:0 7px 20px #173a3218}.topbar-title{text-align:center}.topbar-title p{margin:0;color:var(--gold);font-size:9px;letter-spacing:2px}.topbar-title h1{margin:2px 0 0;font-size:20px}.form-card{position:relative}.manage-btn{position:absolute;right:16px;top:16px;width:auto;padding:8px 10px;border:1px solid #dfe7e2;border-radius:11px;background:#edf3ef;color:var(--jade);font-size:11px}.block{padding:15px 0;border-top:1px solid #e9eeea}.block:first-of-type{border-top:0;padding-top:4px}.block-head{display:flex;align-items:center;gap:9px;margin-bottom:13px}.block-head span{width:25px;height:25px;display:grid;place-items:center;border-radius:8px;background:#eaf1ed;color:var(--jade);font-size:10px;font-weight:800}.block-head b{color:var(--ink);font-size:14px}.action-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.secondary{width:100%;padding:14px;border:1px solid var(--jade);border-radius:14px;background:#fff;color:var(--jade);font-weight:800}.modal-backdrop{position:fixed;z-index:30;inset:0;display:none;align-items:flex-end;justify-content:center;background:#132c2678;backdrop-filter:blur(5px)}.modal-backdrop.show{display:flex}.modal{width:min(100%,520px);max-height:86vh;overflow:auto;padding:20px 16px calc(20px + env(safe-area-inset-bottom));background:#f7f5ee;border-radius:26px 26px 0 0;box-shadow:0 -15px 50px #102a2460}.modal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:15px}.modal-head h2{margin:0;color:var(--ink);font-size:20px}.close-btn{border:0;background:#e6ece8;color:#61736c;width:34px;height:34px;border-radius:50%}.archive-list{display:grid;gap:10px}.archive-item{padding:14px;background:#fff;border:1px solid #fff;border-radius:17px;box-shadow:0 7px 20px #203d3210}.archive-item.selected{border-color:#b68c45;background:#fffaf0}.archive-main{display:flex;align-items:center;gap:10px}.archive-main .avatar{width:38px;height:38px;display:grid;place-items:center;border-radius:50%;background:var(--ink);color:#f3dca8}.archive-copy{flex:1;min-width:0}.archive-copy b{display:flex;align-items:center;gap:7px;color:var(--ink);font-size:13px}.archive-copy p{margin:3px 0 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#8b9792;font-size:10px}.hexagram{display:inline-flex;flex-direction:column;justify-content:center;gap:2px;width:18px;height:15px;vertical-align:middle}.hexagram i{display:flex;width:18px;height:2px;border-radius:2px;background:currentColor}.hexagram.kun i{justify-content:space-between;background:transparent}.hexagram.kun i:before,.hexagram.kun i:after{content:"";width:7px;height:2px;border-radius:2px;background:currentColor}.hexagram.qian{color:#3f86d9}.hexagram.kun{color:#e48ba8}.archive-actions{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:11px}.archive-actions button{padding:8px 3px;border:0;border-radius:9px;background:#edf2ee;color:#557068;font-size:10px}.archive-actions .danger{color:#a45e50;background:#f8ece8}.empty-modal{text-align:center;padding:32px;color:#8a9691}.selected-banner{display:none;margin:0 0 13px;padding:11px 13px;border-radius:12px;background:#edf4ef;color:#48655b;font-size:11px}.selected-banner.show{display:block}.bottom-nav{position:fixed;z-index:10;left:50%;bottom:10px;transform:translateX(-50%);width:min(calc(100% - 24px),496px);display:grid;grid-template-columns:repeat(4,1fr);padding:9px 6px calc(9px + env(safe-area-inset-bottom));background:#15382ff2;border-radius:21px;box-shadow:0 14px 35px #173a3245}.bottom-nav a{text-align:center;text-decoration:none;color:#91aaa1;font-size:9px}.bottom-nav span{display:block;margin-bottom:3px;font-size:18px}.bottom-nav a.active{color:#f2dba5}main{padding-bottom:105px}
-</style></head><body><main>
-<header class="topbar"><a href="/" aria-label="返回首页">‹</a><div class="topbar-title"><p>BAZI PROFILE</p><h1>八字信息录入</h1></div><button class="icon-btn" id="topManage" aria-label="档案管理">档</button></header>
-<section class="card form-card"><button class="manage-btn" id="manage">▤ 档案管理</button><div class="section-title"><span>录</span><h2 id="formTitle">新建命理档案</h2></div><div id="selectedBanner" class="selected-banner"></div>
-  <div class="block"><div class="block-head"><span>01</span><b>基本信息</b></div><label>档案名称<input id="name" placeholder="例如：张三 / 命例001"></label><div class="gender-row"><button class="active" data-gender="男">乾造 · 男</button><button data-gender="女">坤造 · 女</button></div></div>
-  <div class="block"><div class="block-head"><span>02</span><b>出生地区</b></div><div class="region-grid"><label>省份<select id="province"><option value="">请选择</option></select></label><label>城市<select id="city"><option value="">请选择</option></select></label><label>区县<select id="district"><option value="">请选择</option></select></label></div><label>出生地经度 <small>用于真太阳时校正</small><div class="unit-input"><input id="longitude" type="number" min="73" max="136" step=".0001" value="120"><span>°E</span></div></label></div>
-  <div class="block"><div class="block-head"><span>03</span><b>出生时间</b></div><div class="tabs"><button class="active" data-mode="solar">公历</button><button data-mode="lunar">农历</button><button data-mode="trueSolar">真太阳时</button></div><div id="solarPanel"><label>公历年月日时分<input id="solar" type="datetime-local"></label></div><div id="lunarPanel" style="display:none"><div class="lunar-grid"><label>农历年<input id="lunarYear" type="number" min="1901" max="2099"></label><label>农历月<select id="lunarMonth"></select></label><label>农历日<select id="lunarDay"></select></label><label>时分<input id="lunarTime" type="time" value="12:00"></label></div></div><div id="trueSolarPanel" style="display:none"><label>真太阳年月日时分<input id="trueSolar" type="datetime-local"></label></div><div class="conversion"><b>三时同步</b><p>保存后自动归档公历、农历与真太阳时信息。</p></div></div>
-  <div class="action-grid"><button id="save" class="primary">保存命理档案</button><button id="chart" class="secondary">选择排盘</button></div><p id="message" class="message"></p>
-</section><footer>青筮记 · 时间口径均随档案保存</footer></main>
-<nav class="bottom-nav"><a href="/"><span>⌂</span>首页</a><a href="#" id="navManage"><span>▤</span>档案</a><a class="active" href="/bazi.html"><span>☷</span>应用</a><a href="#"><span>○</span>我的</a></nav>
-<div class="modal-backdrop" id="modal"><div class="modal"><div class="modal-head"><div><p class="eyebrow">ARCHIVE MANAGER</p><h2>档案管理</h2></div><button class="close-btn" id="close">×</button></div><button class="primary" id="add">＋ 添加新档案</button><div style="height:12px"></div><div id="archiveList" class="archive-list"></div></div></div>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>青筮问道｜青衣筮卜   窥天问道——传统民俗专业工具合集</title>
+<link rel="stylesheet" href="./app/globals.css?v=20260722-neutral3">
+<style>
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:8px 2px 18px}.topbar a,.icon-btn{width:42px;height:42px;display:grid;place-items:center;border:1px solid #fff;border-radius:14px;background:#ffffffb5;color:var(--ink);text-decoration:none;box-shadow:0 7px 20px #173a3218}.topbar-title{text-align:center}.topbar-title p{margin:0;color:var(--gold);font-size:9px;letter-spacing:2px}.topbar-title h1{margin:2px 0 0;font-size:20px}.form-card{position:relative;margin:0;box-shadow:none}.manage-btn{position:absolute;right:16px;top:16px;width:auto;padding:8px 10px;border:1px solid #dfe7e2;border-radius:11px;background:#edf3ef;color:var(--jade);font-size:11px}.block{padding:15px 0;border-top:1px solid #e9eeea}.block:first-of-type{border-top:0;padding-top:4px}.block-head{display:flex;align-items:center;gap:9px;margin-bottom:13px}.block-head span{width:25px;height:25px;display:grid;place-items:center;border-radius:8px;background:#eaf1ed;color:var(--jade);font-size:10px;font-weight:800}.block-head b{color:var(--ink);font-size:14px}.action-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.secondary{width:100%;padding:14px;border:1px solid var(--jade);border-radius:14px;background:#fff;color:var(--jade);font-weight:800}.modal-backdrop{position:fixed;z-index:30;inset:0;display:none;align-items:center;justify-content:center;padding:16px;background:#132c2678;backdrop-filter:blur(5px)}.modal-backdrop.show{display:flex}.modal{box-sizing:border-box;width:calc(100vw - 32px);height:66vh;height:66dvh;max-width:480px;overflow:auto;padding:18px;background:#f7f5ee;border:1px solid #ffffffa8;border-radius:20px;box-shadow:0 18px 52px #102a2460}.modal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:15px}.modal-head h2{margin:0;color:var(--ink);font-size:20px}.close-btn{border:0;background:#e6ece8;color:#61736c;width:34px;height:34px;border-radius:50%}.archive-list{display:grid;gap:10px}.archive-item{padding:14px;background:#fff;border:1px solid #fff;border-radius:17px;box-shadow:0 7px 20px #203d3210}.archive-item.selected{border-color:#b68c45;background:#fffaf0}.archive-main{display:flex;align-items:center;gap:10px}.archive-main .avatar{width:38px;height:38px;display:grid;place-items:center;border-radius:50%;background:var(--ink);color:#f3dca8}.archive-copy{flex:1;min-width:0}.archive-copy b{display:flex;align-items:center;gap:7px;color:var(--ink);font-size:13px}.archive-copy p{margin:3px 0 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#8b9792;font-size:10px}.hexagram{display:inline-flex;flex-direction:column;justify-content:center;gap:2px;width:18px;height:15px;vertical-align:middle}.hexagram i{display:flex;width:18px;height:2px;border-radius:2px;background:currentColor}.hexagram.kun i{justify-content:space-between;background:transparent}.hexagram.kun i:before,.hexagram.kun i:after{content:"";width:7px;height:2px;border-radius:2px;background:currentColor}.hexagram.qian{color:#3f86d9}.hexagram.kun{color:#e48ba8}.archive-actions{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:11px}.archive-actions button{padding:8px 3px;border:0;border-radius:9px;background:#edf2ee;color:#557068;font-size:10px}.archive-actions .danger{color:#a45e50;background:#f8ece8}.empty-modal{text-align:center;padding:32px;color:#8a9691}.selected-banner{display:none;margin:0 0 13px;padding:11px 13px;border-radius:12px;background:#edf4ef;color:#48655b;font-size:11px}.selected-banner.show{display:block}.bottom-nav{position:fixed;z-index:10;left:50%;bottom:10px;transform:translateX(-50%);width:min(calc(100% - 24px),496px);display:grid;grid-template-columns:repeat(4,1fr);padding:9px 6px calc(9px + env(safe-area-inset-bottom));background:#15382ff2;border-radius:21px;box-shadow:0 14px 35px #173a3245}.bottom-nav a{text-align:center;text-decoration:none;color:#91aaa1;font-size:9px}.bottom-nav span{display:block;margin-bottom:3px;font-size:18px}.bottom-nav a.active{color:#f2dba5}main{padding-bottom:105px}
+.form-backdrop{position:fixed;z-index:40;inset:0;display:none;align-items:center;justify-content:center;padding:16px;background:#132c2678;backdrop-filter:blur(5px)}.form-backdrop.show{display:flex}.form-dialog{box-sizing:border-box;width:calc(100vw - 32px);height:66vh;height:66dvh;max-width:480px;overflow:auto;padding:18px;background:#f7f5ee;border:1px solid #ffffffa8;border-radius:20px;box-shadow:0 18px 52px #102a2460}
+.form-dialog .section-title{margin-bottom:10px}.form-dialog .block{padding:7px 0;border-top:0}.form-dialog .block:first-of-type{padding-top:0}.form-dialog .block-head{gap:6px;margin-bottom:7px}.form-dialog .block-head span{width:20px;height:20px;border-radius:6px;font-size:8px}.form-dialog .block-head b{font-size:11px;font-weight:700}.form-dialog label{margin-bottom:8px;font-size:11px}.form-dialog input,.form-dialog select{min-height:40px;margin-top:4px;padding:9px 10px;border-radius:10px}.form-dialog .gender-row button{padding:9px 7px}.form-dialog .tabs{margin-bottom:9px;padding:3px}.form-dialog .tabs button{padding:8px 3px}.form-dialog .conversion{display:flex;align-items:center;gap:6px;margin:1px 0 6px;padding:5px 7px;border-left:0;border-radius:7px;background:#f3f1e8}.form-dialog .conversion b{flex:0 0 auto;font-size:9px}.form-dialog .conversion p{margin:0;font-size:9px;line-height:1.35}.form-dialog .action-grid{margin-top:3px}.form-dialog .primary,.form-dialog .secondary{padding:11px}
+.form-dialog select{cursor:pointer}.wheel-backdrop{position:fixed;z-index:80;inset:0;display:none;align-items:flex-end;justify-content:center;background:#132c2652}.wheel-backdrop.show{display:flex}.wheel-picker{box-sizing:border-box;width:100%;max-width:480px;padding:12px 16px calc(14px + env(safe-area-inset-bottom));background:#fbfaf5;border-radius:20px 20px 0 0;box-shadow:0 -16px 45px #102a2440}.wheel-head{display:flex;align-items:center;justify-content:space-between;padding-bottom:8px}.wheel-head b{color:var(--ink);font-size:13px}.wheel-head button{padding:7px 10px;border:0;border-radius:9px;background:#edf2ee;color:#587168;font-size:11px}.wheel-head .wheel-confirm{background:var(--jade);color:#fff}.wheel-list{position:relative;height:180px;overflow-y:auto;scroll-snap-type:y mandatory;overscroll-behavior:contain;padding:72px 0;scrollbar-width:none}.wheel-list::-webkit-scrollbar{display:none}.wheel-list:before,.wheel-list:after{content:"";position:sticky;z-index:2;left:0;display:block;height:1px;background:#d8dfda;pointer-events:none}.wheel-list:before{top:71px}.wheel-list:after{bottom:71px}.wheel-option{display:flex;width:100%;height:36px;align-items:center;justify-content:center;scroll-snap-align:center;border:0;background:transparent;color:#8a9691;font-size:13px}.wheel-option.active{color:var(--ink);font-size:16px;font-weight:800}
+html.embedded,body.embedded{background:transparent!important}body.embedded>.bottom-nav,body.embedded main>.topbar,body.embedded main>footer,body.embedded>#modal{display:none!important}body.embedded main{padding:0;background:transparent!important}
+main{padding-bottom:108px}.bottom-nav{width:min(calc(100% - 24px),516px)}
+</style>
+</head>
+<body>
+<main>
+<header class="topbar">
+<a href="./" aria-label="返回首页">‹</a>
+<div class="topbar-title">
+<p>BAZI PROFILE</p>
+<h1>八字信息录入</h1>
+</div>
+<button class="icon-btn" id="topManage" aria-label="档案管理">档</button>
+</header>
+<div class="form-backdrop" id="formModal">
+<div class="form-dialog" id="formDialog" role="dialog" aria-modal="true" aria-label="八字信息录入">
+<section class="card form-card">
+<button class="manage-btn" id="manage">‹ 返回档案</button>
+<div class="section-title">
+<span>录</span>
+<h2 id="formTitle">新建命理档案</h2>
+</div>
+<div id="selectedBanner" class="selected-banner">
+</div>
+  <div class="block">
+<div class="block-head">
+<span>01</span>
+<b>基本信息</b>
+</div>
+<label>档案名称<input id="name" placeholder="例如：张三 / 命例001">
+</label>
+<div class="gender-row">
+<button class="active" data-gender="男">乾造 · 男</button>
+<button data-gender="女">坤造 · 女</button>
+</div>
+</div>
+  <div class="block">
+<div class="block-head">
+<span>02</span>
+<b>出生地区</b>
+</div>
+<div class="region-grid">
+<label>省份<select id="province">
+<option value="">请选择</option>
+</select>
+</label>
+<label>城市<select id="city">
+<option value="">请选择</option>
+</select>
+</label>
+<label>区县<select id="district">
+<option value="">请选择</option>
+</select>
+</label>
+</div>
+<label>出生地经度 <small>用于真太阳时校正</small>
+<div class="unit-input">
+<input id="longitude" type="number" min="73" max="136" step=".0001" value="120">
+<span>°E</span>
+</div>
+</label>
+</div>
+  <div class="block">
+<div class="block-head">
+<span>03</span>
+<b>出生时间</b>
+</div>
+<div class="tabs">
+<button class="active" data-mode="solar">公历</button>
+<button data-mode="lunar">农历</button>
+<button data-mode="trueSolar">真太阳时</button>
+</div>
+<div id="solarPanel">
+<label>公历年月日时分<input id="solar" type="datetime-local">
+</label>
+</div>
+<div id="lunarPanel" style="display:none">
+<div class="lunar-grid">
+<label>农历年<input id="lunarYear" type="number" min="1901" max="2099">
+</label>
+<label>农历月<select id="lunarMonth">
+</select>
+</label>
+<label>农历日<select id="lunarDay">
+</select>
+</label>
+<label>时分<input id="lunarTime" type="time" value="12:00">
+</label>
+</div>
+</div>
+<div id="trueSolarPanel" style="display:none">
+<label>真太阳年月日时分<input id="trueSolar" type="datetime-local">
+</label>
+</div>
+<div class="conversion">
+<b>三时同步</b>
+<p>保存后自动归档公历、农历与真太阳时信息。</p>
+</div>
+</div>
+  <div class="action-grid">
+<button id="save" class="primary">保存命理档案</button>
+<button id="chart" class="secondary">选择排盘</button>
+</div>
+<p id="message" class="message">
+</p>
+</section>
+</div>
+</div>
+<footer>青筮问道 · 时间口径均随档案保存</footer>
+</main>
+<nav class="bottom-nav">
+<a href="./">
+<span>⌂</span>首页</a>
+<a href="#" id="navManage">
+<span>▤</span>档案</a>
+<a class="active" href="./applications.html">
+<span>☷</span>应用</a>
+<a href="#">
+<span>○</span>我的</a>
+</nav>
+<div class="modal-backdrop" id="modal">
+<div class="modal">
+<div class="modal-head">
+<div>
+<p class="eyebrow">ARCHIVE MANAGER</p>
+<h2>档案管理</h2>
+</div>
+<button class="close-btn" id="close">×</button>
+</div>
+<button class="primary" id="add">＋ 添加新档案</button>
+<div style="height:12px">
+</div>
+<div id="archiveList" class="archive-list">
+</div>
+</div>
+</div>
 <script>
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)],pad=n=>String(n).padStart(2,'0'),local=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
 const dayNames=['初一','初二','初三','初四','初五','初六','初七','初八','初九','初十','十一','十二','十三','十四','十五','十六','十七','十八','十九','二十','廿一','廿二','廿三','廿四','廿五','廿六','廿七','廿八','廿九','三十'],monthNames=['正月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','腊月','闰正月','闰二月','闰三月','闰四月','闰五月','闰六月','闰七月','闰八月','闰九月','闰十月','闰十一月','闰腊月'];
-let regions=[],mode='solar',gender='男',editingId=new URLSearchParams(location.search).get('edit'),selectedId=localStorage.getItem('qingshiji-selected')||'',archives=JSON.parse(localStorage.getItem('qingshiji-archives')||'[]');const now=new Date();$('#solar').value=local(now);$('#trueSolar').value=local(now);$('#lunarYear').value=now.getFullYear();$('#lunarMonth').innerHTML=monthNames.map(x=>`<option>${x}</option>`).join('');$('#lunarDay').innerHTML=dayNames.map(x=>`<option>${x}</option>`).join('');
+const pageParams=new URLSearchParams(location.search),embedded=pageParams.get('embedded')==='1';if(embedded){document.documentElement.classList.add('embedded');document.body.classList.add('embedded')}let regions=[],mode='solar',gender='男',editingId=pageParams.get('edit'),selectedId=localStorage.getItem('qingshiji-selected')||'',archives=JSON.parse(localStorage.getItem('qingshiji-archives')||'[]');const now=new Date();$('#solar').value=local(now);$('#trueSolar').value=local(now);$('#lunarYear').value=now.getFullYear();$('#lunarMonth').innerHTML=monthNames.map(x=>`<option>${x}</option>`).join('');$('#lunarDay').innerHTML=dayNames.map(x=>`<option>${x}</option>`).join('');
 function eot(d){let s=new Date(d.getFullYear(),0,0),day=Math.floor((d-s)/86400000),b=360/365*(day-81)*Math.PI/180;return 9.87*Math.sin(2*b)-7.53*Math.cos(b)-1.5*Math.sin(b)}function trueSolar(d,lng){return new Date(d.getTime()+(4*(lng-120)+eot(d))*60000)}function lunarParts(d){return Object.fromEntries(new Intl.DateTimeFormat('zh-CN-u-ca-chinese',{year:'numeric',month:'long',day:'numeric'}).formatToParts(d).map(x=>[x.type,x.value]))}function lunarLabel(d){let p=lunarParts(d);return `${p.relatedYear||p.year}年 ${p.month}${p.day}日 ${pad(d.getHours())}:${pad(d.getMinutes())}`}function dayNo(v){let n=Number(v);return n>0?n:dayNames.indexOf(v)+1}function lunarToSolar(y,m,da,h,mi){for(let d=new Date(y-1,10,1),end=new Date(y+1,2,1);d<=end;d.setDate(d.getDate()+1)){let p=lunarParts(d);if(Number(p.relatedYear||p.year)===y&&p.month===m&&dayNo(p.day)===dayNo(da))return new Date(d.getFullYear(),d.getMonth(),d.getDate(),h,mi)}return null}
-fetch('/public/pca-code.json').then(r=>r.json()).then(data=>{regions=data;fill($('#province'),data);if(editingId)loadArchive(editingId)});function fill(el,items,value=''){el.innerHTML='<option value="">请选择</option>'+items.map(x=>`<option value="${x.code}" ${x.code===value?'selected':''}>${x.name}</option>`).join('')}function pObj(){return regions.find(x=>x.code===$('#province').value)}function cObj(){return pObj()?.children?.find(x=>x.code===$('#city').value)}$('#province').onchange=()=>{fill($('#city'),pObj()?.children||[]);fill($('#district'),[])};$('#city').onchange=()=>fill($('#district'),cObj()?.children||[]);
+fetch('./public/pca-code.json').then(r=>r.json()).then(data=>{regions=data;fill($('#province'),data);if(editingId)loadArchive(editingId)});function fill(el,items,value=''){el.innerHTML='<option value="">请选择</option>'+items.map(x=>`<option value="${x.code}" ${x.code===value?'selected':''}>${x.name}</option>`).join('')}function pObj(){return regions.find(x=>x.code===$('#province').value)}function cObj(){return pObj()?.children?.find(x=>x.code===$('#city').value)}$('#province').onchange=()=>{fill($('#city'),pObj()?.children||[]);fill($('#district'),[])};$('#city').onchange=()=>fill($('#district'),cObj()?.children||[]);
 $$('[data-gender]').forEach(b=>b.onclick=()=>{gender=b.dataset.gender;$$('[data-gender]').forEach(x=>x.classList.toggle('active',x===b))});$$('[data-mode]').forEach(b=>b.onclick=()=>{mode=b.dataset.mode;$$('[data-mode]').forEach(x=>x.classList.toggle('active',x===b));['solar','lunar','trueSolar'].forEach(x=>$('#'+x+'Panel').style.display=x===mode?'block':'none')});
 function inputDate(){if(mode==='solar')return new Date($('#solar').value);if(mode==='lunar'){let[h,m]=$('#lunarTime').value.split(':').map(Number);return lunarToSolar(Number($('#lunarYear').value),$('#lunarMonth').value,$('#lunarDay').value,h,m)}let target=new Date($('#trueSolar').value),guess=new Date(target),lng=Number($('#longitude').value);for(let i=0;i<3;i++){let c=trueSolar(guess,lng);guess=new Date(guess.getTime()+target.getTime()-c.getTime())}return guess}
 function save(){let name=$('#name').value.trim(),p=pObj(),c=cObj(),di=c?.children?.find(x=>x.code===$('#district').value),d=inputDate(),lng=Number($('#longitude').value);if(!name)return msg('请填写档案名称',1);if(!p||!c||!di)return msg('请选择完整省、市、区县',1);if(!d||isNaN(d))return msg('日期转换失败，请检查输入',1);let old=archives.find(x=>x.id===editingId),item={id:editingId||Date.now()+'',name,gender,location:`${p.name} ${c.name} ${di.name}`,regionCodes:[p.code,c.code,di.code],longitude:lng,solar:local(d),lunar:lunarLabel(d),trueSolar:local(trueSolar(d,lng)),createdAt:old?.createdAt||new Date().toISOString()};archives=editingId?archives.map(x=>x.id===editingId?item:x):[item,...archives];editingId=item.id;selectedId=item.id;persist();updateSelected();$('#formTitle').textContent='修改命理档案';msg('档案已保存并设为当前排盘档案')}
-function persist(){localStorage.setItem('qingshiji-archives',JSON.stringify(archives));localStorage.setItem('qingshiji-selected',selectedId);renderManager()}function msg(t,e){$('#message').textContent=t;$('#message').style.color=e?'#a45e50':''}function resetForm(){editingId=null;$('#formTitle').textContent='新建命理档案';$('#name').value='';$('#solar').value=local(new Date());$('#selectedBanner').classList.remove('show');closeModal();window.scrollTo({top:0,behavior:'smooth'})}
-function loadArchive(id){let x=archives.find(a=>a.id===id);if(!x)return;editingId=id;$('#formTitle').textContent='修改命理档案';$('#name').value=x.name;gender=x.gender;$$('[data-gender]').forEach(b=>b.classList.toggle('active',b.dataset.gender===gender));$('#longitude').value=x.longitude;$('#solar').value=x.solar;$('#trueSolar').value=x.trueSolar;let[p,c,d]=x.regionCodes||[];fill($('#province'),regions,p);$('#province').value=p||'';fill($('#city'),pObj()?.children||[],c);$('#city').value=c||'';fill($('#district'),cObj()?.children||[],d);$('#district').value=d||'';closeModal();window.scrollTo({top:0,behavior:'smooth'})}
+function persist(){localStorage.setItem('qingshiji-archives',JSON.stringify(archives));localStorage.setItem('qingshiji-selected',selectedId);fetch('./api/archives',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(archives)}).catch(()=>{});renderManager()}function msg(t,e){$('#message').textContent=t;$('#message').style.color=e?'#a45e50':''}function openForm(){closeModal();$('#formModal').classList.add('show')}function closeForm(){$('#formModal').classList.remove('show')}function resetForm(){editingId=null;$('#formTitle').textContent='新建命理档案';$('#name').value='';$('#solar').value=local(new Date());$('#selectedBanner').classList.remove('show');openForm();$('#formDialog').scrollTo({top:0})}
+function loadArchive(id){let x=archives.find(a=>a.id===id);if(!x)return;editingId=id;$('#formTitle').textContent='修改命理档案';$('#name').value=x.name;gender=x.gender;$$('[data-gender]').forEach(b=>b.classList.toggle('active',b.dataset.gender===gender));$('#longitude').value=x.longitude;$('#solar').value=x.solar;$('#trueSolar').value=x.trueSolar;let[p,c,d]=x.regionCodes||[];fill($('#province'),regions,p);$('#province').value=p||'';fill($('#city'),pObj()?.children||[],c);$('#city').value=c||'';fill($('#district'),cObj()?.children||[],d);$('#district').value=d||'';openForm()}
 function selectArchive(id){selectedId=id;localStorage.setItem('qingshiji-selected',id);updateSelected();renderManager();closeModal()}function deleteArchive(id){if(!confirm('确定删除这个档案吗？'))return;archives=archives.filter(x=>x.id!==id);if(selectedId===id)selectedId='';if(editingId===id)resetForm();persist();updateSelected()}function updateSelected(){let x=archives.find(a=>a.id===selectedId);if(x){$('#selectedBanner').textContent=`当前选择：${x.name} · ${x.gender==='男'?'乾造':'坤造'} · ${x.location}`;$('#selectedBanner').classList.add('show')}else $('#selectedBanner').classList.remove('show')}
-function genderHexagram(g){return g==='男'?'<span class="hexagram qian" title="男性 · 乾三连" aria-label="男性，乾卦"><i></i><i></i><i></i></span>':'<span class="hexagram kun" title="女性 · 坤六断" aria-label="女性，坤卦"><i></i><i></i><i></i></span>'}function renderManager(){$('#archiveList').innerHTML=archives.length?archives.map(x=>`<article class="archive-item ${x.id===selectedId?'selected':''}"><div class="archive-main"><div class="avatar">${x.name[0]}</div><div class="archive-copy"><b>${x.name}${genderHexagram(x.gender)}${x.id===selectedId?' · 当前':''}</b><p>${x.gender==='男'?'乾造':'坤造'} · ${x.location} · ${x.solar.replace('T',' ')}</p></div></div><div class="archive-actions"><button onclick="selectArchive('${x.id}')">选择</button><button onclick="loadArchive('${x.id}')">修改</button><button class="danger" onclick="deleteArchive('${x.id}')">删除</button></div></article>`).join(''):'<div class="empty-modal">暂无档案<br><small>点击上方按钮添加第一份档案</small></div>'}
-function openModal(){renderManager();$('#modal').classList.add('show')}function closeModal(){$('#modal').classList.remove('show')}$('#manage').onclick=$('#topManage').onclick=$('#navManage').onclick=e=>{e?.preventDefault();openModal()};$('#close').onclick=closeModal;$('#modal').onclick=e=>{if(e.target===$('#modal'))closeModal()};$('#add').onclick=resetForm;$('#save').onclick=save;$('#chart').onclick=()=>{let id=selectedId||editingId;if(!id)return msg('请先保存或在档案管理中选择一个档案',1);localStorage.setItem('qingshiji-selected',id);location.href='/chart.html'};updateSelected();renderManager();
-</script></body></html>
+function genderHexagram(g){return g==='男'?'<span class="hexagram qian" title="男性 · 乾三连" aria-label="男性，乾卦"><i></i><i></i><i></i></span>':'<span class="hexagram kun" title="女性 · 坤六断" aria-label="女性，坤卦"><i></i><i></i><i></i></span>'}function renderManager(){$('#archiveList').innerHTML=archives.length?archives.map(x=>`<article class="archive-item ${x.id===selectedId?'selected':''}">
+<div class="archive-main">
+<div class="avatar">${x.name[0]}</div>
+<div class="archive-copy">
+<b>${x.name}${genderHexagram(x.gender)}${x.id===selectedId?' · 当前':''}</b>
+<p>${x.gender==='男'?'乾造':'坤造'} · ${x.location} · ${x.solar.replace('T',' ')}</p>
+</div>
+</div>
+<div class="archive-actions">
+<button onclick="selectArchive('${x.id}')">选择</button>
+<button onclick="loadArchive('${x.id}')">修改</button>
+<button class="danger" onclick="deleteArchive('${x.id}')">删除</button>
+</div>
+</article>`).join(''):`<div class="empty-modal">暂无档案<br>
+<small>点击上方按钮添加第一份档案</small>
+</div>`}
+function openModal(){closeForm();renderManager();$('#modal').classList.add('show')}function closeModal(){$('#modal').classList.remove('show')}function returnToArchive(){if(embedded)parent.postMessage('qingshiji-close-editor',location.origin);else openModal()}$('#manage').onclick=e=>{e.preventDefault();returnToArchive()};$('#topManage').onclick=$('#navManage').onclick=e=>{e?.preventDefault();openModal()};$('#close').onclick=closeModal;$('#modal').onclick=e=>{if(e.target===$('#modal'))closeModal()};$('#formModal').onclick=e=>{if(e.target===$('#formModal'))returnToArchive()};$('#add').onclick=resetForm;$('#save').onclick=save;$('#chart').onclick=()=>{let id=selectedId||editingId;if(!id)return msg('请先保存或在档案管理中选择一个档案',1);localStorage.setItem('qingshiji-selected',id);location.href='./chart.html'};updateSelected();renderManager();pageParams.get('new')==='1'?resetForm():openModal();
+const wheel=document.createElement('div');wheel.className='wheel-backdrop';wheel.innerHTML=`<section class="wheel-picker" role="dialog" aria-modal="true" aria-label="滚动选择">
+<header class="wheel-head">
+<button type="button" class="wheel-cancel">取消</button>
+<b id="wheelTitle">请选择</b>
+<button type="button" class="wheel-confirm">确定</button>
+</header>
+<div class="wheel-list">
+</div>
+</section>`;document.body.appendChild(wheel);const wheelList=wheel.querySelector('.wheel-list'),wheelTitle=wheel.querySelector('#wheelTitle');let wheelSelect=null,wheelIndex=0,wheelFrame=0;function wheelLabel(el){let label=el.closest('label'),text=label?.childNodes[0]?.textContent?.trim();return text||'请选择'}function markWheel(i,scroll=true){let buttons=[...wheelList.querySelectorAll('.wheel-option')];if(!buttons.length)return;wheelIndex=Math.max(0,Math.min(i,buttons.length-1));buttons.forEach((b,n)=>b.classList.toggle('active',n===wheelIndex));if(scroll)buttons[wheelIndex].scrollIntoView({block:'center',behavior:'smooth'})}function openWheel(el){let options=[...el.options];if(!options.length)return;wheelSelect=el;wheelTitle.textContent=wheelLabel(el);wheelList.innerHTML=options.map((o,i)=>`<button type="button" class="wheel-option" data-index="${i}">${o.textContent}</button>`).join('');wheel.classList.add('show');requestAnimationFrame(()=>markWheel(Math.max(0,el.selectedIndex),false));requestAnimationFrame(()=>markWheel(Math.max(0,el.selectedIndex),true))}function closeWheel(){wheel.classList.remove('show');wheelSelect=null}wheelList.addEventListener('scroll',()=>{cancelAnimationFrame(wheelFrame);wheelFrame=requestAnimationFrame(()=>{let center=wheelList.getBoundingClientRect().top+wheelList.clientHeight/2,buttons=[...wheelList.querySelectorAll('.wheel-option')],nearest=0,distance=Infinity;buttons.forEach((b,i)=>{let r=b.getBoundingClientRect(),d=Math.abs(r.top+r.height/2-center);if(d<distance){distance=d;nearest=i}});markWheel(nearest,false)})},{passive:true});wheelList.addEventListener('click',e=>{let option=e.target.closest('.wheel-option');if(option)markWheel(Number(option.dataset.index))});wheel.querySelector('.wheel-cancel').onclick=closeWheel;wheel.querySelector('.wheel-confirm').onclick=()=>{if(!wheelSelect)return closeWheel();wheelSelect.selectedIndex=wheelIndex;wheelSelect.dispatchEvent(new Event('change',{bubbles:true}));closeWheel()};wheel.onclick=e=>{if(e.target===wheel)closeWheel()};document.addEventListener('pointerdown',e=>{let select=e.target.closest('#formDialog select');if(!select)return;e.preventDefault();openWheel(select)});document.addEventListener('keydown',e=>{let select=e.target.closest?.('#formDialog select');if(select&&(e.key==='Enter'||e.key===' ')){e.preventDefault();openWheel(select)}});
+</script>
+</body>
+</html>

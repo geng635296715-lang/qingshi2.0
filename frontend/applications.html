@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>应用｜青筮问道</title>
+  <link rel="stylesheet" href="./app/globals.css?v=20260722-neutral3">
+  <style>
+    main{padding-bottom:108px}.app-head{display:flex;justify-content:space-between;align-items:center;min-height:65px;padding:8px 2px 15px}.app-brand{display:flex;align-items:center;gap:12px}.app-brand .brand-mark{width:42px;height:42px;border-radius:14px 14px 14px 4px;font-size:21px}.app-brand p{margin:0;color:var(--gold);font-size:9px;letter-spacing:2px}.app-brand-logo{display:block;width:84px;height:21px;margin-top:2px;object-fit:contain;object-position:left center;mix-blend-mode:multiply}.round-btn{width:42px;height:42px;border:1px solid #fff;border-radius:14px;background:#ffffffb8;color:var(--ink);font-size:18px;box-shadow:0 7px 20px #173a3218}
+    .welcome{position:relative;overflow:hidden;padding:24px 22px;border-radius:25px}.welcome::after{content:"乾\A坤";white-space:pre;position:absolute;right:18px;top:4px;color:#fff3;font:58px/.85 serif}.welcome .eyebrow{color:#717d86}.welcome h2{margin:8px 0;font-size:25px}.welcome p{max-width:300px;margin:0;color:#59636c;font-size:12px;line-height:1.7}.today{display:flex;gap:8px;margin-top:18px}.today span{padding:7px 10px;border:1px solid #ffffffb5;border-radius:10px;background:#ffffff66;font-size:11px}
+    .section{margin-top:25px}.section-head{display:flex;align-items:end;justify-content:space-between;margin:0 4px 12px}.section-head h2{margin:0;font-size:19px}.section-head a{color:#89939b;font-size:11px;text-decoration:none}.tool-groups{display:grid;gap:14px}.group-label{display:flex;align-items:center;gap:8px;margin:0 3px 7px;color:#8b949c;font-size:10px}.group-label::after{content:"";height:1px;flex:1;background:#d8dde2}.tools{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.tool{position:relative;padding:15px 3px 13px;border:1px solid #fff;border-radius:17px;background:#fff;text-align:center;text-decoration:none;box-shadow:0 7px 20px #203d3212}.tool-icon{width:44px;height:44px;display:grid;place-items:center;margin:0 auto 9px;border:1px solid #fff;border-radius:15px;background:linear-gradient(145deg,#edf1f4,#d8dee3);color:#66717a;box-shadow:inset 0 1px 0 #fff,0 5px 13px #4b555e1a;font:19px serif}.tool:nth-child(2n) .tool-icon{background:linear-gradient(145deg,#fff,#edf1f4);color:#8a949d}.tool b{display:block;color:#46515a;font-size:11px}.tool small{display:block;margin-top:3px;color:#a2aaa7;font-size:8px}.tag{position:absolute;right:5px;top:5px;padding:3px 5px;border:1px solid #f8e8b9;border-radius:6px;background:linear-gradient(145deg,#d8bd78,#a98232);color:#fffaf0;font-size:6px;box-shadow:0 3px 8px #75561d38}
+    .recent{display:flex;align-items:center;gap:13px;padding:16px;border:1px solid #fff;border-radius:18px;background:#ffffffc9;box-shadow:0 8px 25px #203d3212}.recent-symbol{width:48px;height:48px;display:grid;place-items:center;border:1px solid #d5dbe0;border-radius:50%;color:#6e7881;font-size:20px}.recent-info{flex:1}.recent-info b{display:block;font-size:13px}.recent-info p{margin:4px 0 0;color:#8a949c;font-size:10px}.recent>a{color:#7c8790;text-decoration:none;font-size:12px}.wisdom{padding:18px;border-left:3px solid #a7b0b8;border-radius:5px 18px 18px 5px;background:#f5f7f9;color:#626b73;font-size:12px;line-height:1.8}.wisdom b{color:#4f5962}
+    @media(max-width:380px){.tools{gap:6px}.tool{padding-inline:1px}.welcome{padding:21px 18px}}
+  </style>
+</head>
+<body><main>
+  <header class="app-head"><div class="app-brand"><div class="brand-mark">筮</div><div><p>QING SHI WEN DAO</p><img class="app-brand-logo" src="./assets/qing-logo-horizontal.png" alt="青筮问道"></div></div><button class="round-btn" aria-label="消息" onclick="soon(event)">◇</button></header>
+  <section class="welcome"><p class="eyebrow">玄门日课 · 今日宜静观</p><h2>见天地，见自己</h2><p>以古籍为根，以历法为尺。每一次推演，都保留清晰的时间口径与判断依据。</p><div class="today"><span id="solarDate">公历</span><span id="lunarDate">农历</span></div></section>
+  <section class="section"><div class="section-head"><h2>核心排盘</h2><a href="#tools">全部工具</a></div><div class="tool-groups" id="tools">
+    <div><div class="group-label">命理</div><div class="tools">
+      <a class="tool" href="./chart.html"><span class="tag">已开放</span><span class="tool-icon">八</span><b>八字</b><small>子平命理</small></a>
+      <a class="tool" href="./hepan.html"><span class="tag">已开放</span><span class="tool-icon">合</span><b>合盘</b><small>关系参合</small></a>
+      <a class="tool" href="#" onclick="soon(event)"><span class="tool-icon">紫</span><b>紫微</b><small>斗数命盘</small></a>
+      <a class="tool" href="#" onclick="soon(event)"><span class="tool-icon">七</span><b>七政</b><small>七政四余</small></a>
+    </div></div>
+    <div><div class="group-label">占卜</div><div class="tools">
+      <a class="tool" href="./liuyao.html"><span class="tag">已开放</span><span class="tool-icon">六</span><b>六爻</b><small>纳甲占断</small></a>
+      <a class="tool" href="#" onclick="soon(event)"><span class="tool-icon">梅</span><b>梅花</b><small>象数易学</small></a>
+      <a class="tool" href="#" onclick="soon(event)"><span class="tool-icon">奇</span><b>奇门</b><small>时空遁甲</small></a>
+      <a class="tool" href="#" onclick="soon(event)"><span class="tool-icon">壬</span><b>六壬</b><small>大六壬</small></a>
+    </div></div>
+    <div><div class="group-label">工具</div><div class="tools">
+      <a class="tool" href="#" onclick="soon(event)"><span class="tool-icon">历</span><b>黄历</b><small>节气择日</small></a>
+      <a class="tool" href="#" onclick="soon(event)"><span class="tool-icon">名</span><b>取名</b><small>五行用字</small></a>
+      <a class="tool" href="#" onclick="soon(event)"><span class="tool-icon">罗</span><b>罗盘</b><small>方位工具</small></a>
+      <a class="tool" href="#" onclick="soon(event)"><span class="tool-icon">其</span><b>其他</b><small>其他工具</small></a>
+    </div></div>
+  </div></section>
+  <section class="section"><div class="section-head"><h2>最近使用</h2><a href="#" data-global-archives>档案管理</a></div><div class="recent"><div class="recent-symbol">乾</div><div class="recent-info"><b id="recentName">暂无命理档案</b><p id="recentMeta">录入出生信息后，可在这里快速继续</p></div><a href="#" data-global-archives>进入</a></div></section>
+  <section class="section"><div class="section-head"><h2>筮记一言</h2></div><div class="wisdom"><b>“先观月令，论格推详。”</b><br>神煞只作旁证，格局、气势、调候与岁运仍是判断主线。</div></section>
+  <footer>青筮问道 · 传统民俗专业工具合集</footer>
+</main>
+<nav class="bottom-nav"><a href="./"><span>⌂</span>首页</a><a href="#" data-global-archives><span>▤</span>档案</a><a class="active" href="./applications.html"><span>☷</span>应用</a><a href="#" onclick="soon(event)"><span>○</span>我的</a></nav>
+<script>
+const now=new Date(),pad=n=>String(n).padStart(2,'0');document.querySelector('#solarDate').textContent=`公历 ${now.getFullYear()}.${pad(now.getMonth()+1)}.${pad(now.getDate())}`;try{document.querySelector('#lunarDate').textContent=new Intl.DateTimeFormat('zh-CN-u-ca-chinese',{month:'long',day:'numeric'}).format(now)}catch{}
+const archives=JSON.parse(localStorage.getItem('qingshiji-archives')||'[]');if(archives[0]){document.querySelector('#recentName').textContent=archives[0].name;document.querySelector('#recentMeta').textContent=`${archives[0].gender||''} · ${archives[0].location||''}`}
+function soon(e){if(e)e.preventDefault();alert('该工具正在整理古籍规则，后续开放。')}
+</script><script src="./app/archive-storage.js"></script><script src="./app/archive-manager.js"></script></body></html>

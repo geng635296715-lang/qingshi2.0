@@ -1,80 +1,64 @@
-# 青筮问道八字网页
+# 青筮问道
 
-这是从青筮记项目中整理出的独立网页工程，已按前端、后端和运行数据分层，可直接保存到 GitHub，也可在安装 Node.js 后本地运行。
+青筮问道是一个移动端传统文化工具网站，包含首页、应用页、八字档案与排盘、八字合盘、六爻起卦和六十四卦资料。
 
-## 项目结构
+## 目录结构
 
 ```text
-qingshiwendao-bazi/
-├─ frontend/                  # 手机端网页
-│  ├─ index.html              # 首页
-│  ├─ bazi.html               # 八字信息录入
-│  ├─ chart.html              # 八字排盘与解析
-│  ├─ app/                    # 页面样式和功能脚本
-│  └─ public/                 # 地区数据、图标等静态资源
-├─ backend/
-│  ├─ server.mjs              # 静态页面及数据接口服务
-│  └─ data/                   # 网页运行所需神煞规则数据
-├─ package.json               # 项目信息和启动命令
-├─ start-local.ps1            # Windows 一键启动脚本
-└─ .gitignore                 # Git 忽略规则
+.
+├─ frontend/                 # 可直接部署到 GitHub Pages 的静态网站
+│  ├─ index.html             # 首页
+│  ├─ applications.html      # 应用页
+│  ├─ bazi.html              # 档案录入
+│  ├─ chart.html             # 八字排盘
+│  ├─ hepan.html             # 八字合盘
+│  ├─ liuyao.html            # 六爻占卜
+│  ├─ app/                   # 样式与交互脚本
+│  ├─ assets/                # 图片资源
+│  ├─ public/                # 地区数据与站点图标
+│  └─ api/                   # GitHub Pages 使用的静态数据
+├─ backend/                  # 可选的本地 Node.js 服务
+├─ tools/                    # 项目检查工具
+└─ .github/workflows/        # GitHub Pages 自动发布配置
 ```
 
-## 本地启动
+## 本地运行
 
-运行环境：Node.js 18 或更高版本。本项目没有第三方运行依赖，不需要安装 `node_modules`。
-
-方式一：在项目目录运行：
+需要 Node.js 18 或更高版本，无需安装第三方依赖。
 
 ```powershell
 npm start
 ```
 
-方式二：在 Windows PowerShell 中运行：
+浏览器打开：<http://127.0.0.1:8765>
+
+也可以在 Windows 中运行：
 
 ```powershell
 .\start-local.ps1
 ```
 
-启动后访问：<http://127.0.0.1:8765>
-
-如需更换端口：
-
-```powershell
-$env:PORT=8876
-npm start
-```
-
-## 页面与接口
-
-- `/`：手机端首页
-- `/bazi.html`：八字信息录入和档案管理
-- `/chart.html`：八字命帖、流运、干支关系、古籍参考和流派详析
-- `/api/shensha-rules.json`：神煞可执行规则
-- `/api/shensha-wenzhen.json`：问真口径规则数据
-- `/api/shensha-profiles.json`：神煞兼容显示配置
-- `/api/shensha-catalog.json`：神煞基础资料
-
-人物档案当前保存在访问者浏览器的本地存储中；后端只负责网页资源和规则数据的读取，不会上传个人出生资料。
-
-## 检查项目
+## 项目检查
 
 ```powershell
 npm run check
 ```
 
-## 提交到 GitHub
+其中 `check:pages` 会检查 GitHub Pages 所需的相对路径、静态资源和 JSON 数据。
 
-在本目录中执行：
+## 发布到 GitHub Pages
 
-```powershell
-git init
-git add .
-git commit -m "Initial qingshiwendao bazi web app"
-git branch -M main
-git remote add origin https://github.com/你的用户名/qingshiwendao-bazi.git
-git push -u origin main
-```
+1. 新建 GitHub 仓库并把本目录内容推送到 `main` 分支。
+2. 在仓库的 **Settings → Pages** 中，将 Source 设为 **GitHub Actions**。
+3. 推送后，`.github/workflows/pages.yml` 会自动检查并发布 `frontend/`。
+4. 部署完成后，可从仓库的 **Actions** 或 **Settings → Pages** 查看网址。
 
-项目中的古籍全文、研究文档和原始数据库没有被整体复制；仅收录了网页实际运行所需的规则 JSON，避免仓库夹带无关资料或继续依赖原工作区路径。
+所有页面和资源均使用相对路径，因此既支持用户主页仓库，也支持 `用户名.github.io/仓库名/` 形式的项目站点。
+
+## 数据与隐私
+
+- 八字档案默认保存在访问者浏览器的本地存储中。
+- GitHub Pages 是静态托管，无法保存服务端档案，也不会上传个人出生资料。
+- 八字神煞、合盘基础数据和六爻资料已经放入 `frontend/api/`，静态部署后可直接读取。
+- 可选的 AI 合盘增强需要本地后端及相应环境变量；静态站点会自动使用内置分析结果。
 

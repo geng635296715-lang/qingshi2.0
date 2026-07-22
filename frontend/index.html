@@ -1,56 +1,77 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <title>青筮记｜玄学工具</title>
-  <link rel="stylesheet" href="/app/globals.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#e8ebef">
+  <title>青筮问道</title>
+  <link rel="stylesheet" href="./app/globals.css?v=20260722-neutral5">
   <style>
-    body{background:linear-gradient(180deg,#dfece5 0,#f5f2e9 410px,#f2efe7 100%)}
-    main{padding-bottom:96px}.home-head{display:flex;justify-content:space-between;align-items:center;padding:14px 2px 20px}.home-brand{display:flex;align-items:center;gap:12px}.home-brand .brand-mark{width:48px;height:48px;border-radius:15px 15px 15px 4px;font-size:25px}.home-brand h1{font-size:22px;margin:0 0 2px}.round-btn{width:42px;height:42px;border:1px solid #fff;background:#ffffffa8;border-radius:14px;color:var(--ink);font-size:18px;box-shadow:0 7px 20px #1c443420}
-    .welcome{position:relative;overflow:hidden;padding:24px 22px;color:#f5edda;background:linear-gradient(135deg,#173a32,#2e6958);border-radius:25px;box-shadow:0 18px 40px #173a3235}.welcome:after{content:"乾\A坤";white-space:pre;position:absolute;right:18px;top:4px;color:#fff1;font-family:serif;font-size:58px;line-height:.85}.welcome .eyebrow{color:#d5b46f}.welcome h2{font-size:25px;margin:8px 0}.welcome p{max-width:280px;margin:0;color:#d7e4dd;font-size:12px;line-height:1.7}.today{display:flex;gap:8px;margin-top:18px}.today span{padding:7px 10px;background:#ffffff12;border:1px solid #ffffff18;border-radius:10px;font-size:11px}
-    .quick{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:14px}.quick a{display:flex;align-items:center;gap:12px;text-decoration:none;padding:17px 15px;background:#fff;border-radius:18px;box-shadow:0 8px 25px #203d3214}.quick a:first-child{background:#f6ead0}.quick-icon{width:43px;height:43px;display:grid;place-items:center;border-radius:14px;background:var(--ink);color:#f5dfaa;font-family:serif;font-size:22px}.quick a:last-child .quick-icon{background:#e4eee8;color:var(--jade)}.quick b{display:block;color:var(--ink);font-size:14px}.quick small{color:#89958f;font-size:10px}
-    .home-section{margin-top:25px}.home-section-head{display:flex;align-items:end;justify-content:space-between;margin:0 4px 12px}.home-section-head h2{font-size:19px;margin:0;color:var(--ink)}.home-section-head a{color:#89958f;font-size:11px;text-decoration:none}
-    .tool-groups{display:grid;gap:14px}.tool-row-label{display:flex;align-items:center;gap:8px;margin:0 3px 7px;color:#8b9892;font-size:10px}.tool-row-label:after{content:"";height:1px;flex:1;background:#dfe5e1}.tools{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.tool{position:relative;text-align:center;text-decoration:none;padding:15px 3px 13px;background:#fffdf9;border:1px solid #fff;border-radius:17px;box-shadow:0 7px 20px #203d3212}.tool-icon{width:44px;height:44px;display:grid;place-items:center;margin:0 auto 9px;border-radius:15px;background:#e8f0eb;color:var(--jade);font-family:serif;font-size:19px}.tool:nth-child(2n) .tool-icon{background:#f3ead9;color:#9a7135}.tool b{display:block;color:#40554e;font-size:11px}.tool small{display:block;margin-top:3px;color:#a2aca8;font-size:8px}.tag{position:absolute;right:5px;top:5px;padding:2px 4px;border-radius:5px;background:#bb8d40;color:white;font-size:7px}
-    .recent{display:flex;align-items:center;gap:13px;padding:16px;background:#fff;border-radius:18px;box-shadow:0 8px 25px #203d3212}.recent-symbol{width:48px;height:48px;display:grid;place-items:center;border:1px solid #d9e3dd;border-radius:50%;color:var(--jade);font-size:20px}.recent-info{flex:1}.recent-info b{display:block;color:var(--ink);font-size:13px}.recent-info p{margin:4px 0 0;color:#8a9792;font-size:10px}.recent>a{color:var(--gold);text-decoration:none;font-size:12px}
-    .wisdom{padding:18px;border-left:3px solid var(--gold);background:#f6f0e1;border-radius:5px 18px 18px 5px;color:#6c644f;font-size:12px;line-height:1.8}.wisdom b{color:#765d2e}.bottom-nav{position:fixed;z-index:10;left:50%;bottom:10px;transform:translateX(-50%);width:min(calc(100% - 24px),496px);display:grid;grid-template-columns:repeat(4,1fr);padding:9px 6px calc(9px + env(safe-area-inset-bottom));background:#15382ff2;border:1px solid #ffffff18;border-radius:21px;box-shadow:0 14px 35px #173a3245;backdrop-filter:blur(15px)}.bottom-nav a{text-align:center;text-decoration:none;color:#91aaa1;font-size:9px}.bottom-nav span{display:block;margin-bottom:3px;font-size:18px}.bottom-nav a.active{color:#f2dba5}
-    @media(max-width:380px){.tools{grid-template-columns:repeat(4,1fr);gap:6px}.tool{padding-inline:1px}.quick{grid-template-columns:1fr}.welcome{padding:21px 18px}}
+    :root{--ink:#454b54;--muted:#727983;--line:rgba(126,135,145,.2);--glass:rgba(250,251,253,.78)}
+    *{box-sizing:border-box}html{background:#e5e8ec}body{margin:0;color:var(--ink);background:linear-gradient(#d8dce2,#eef0f3 70%,#e4e7eb);font-family:"Songti SC","Noto Serif SC","Microsoft YaHei",serif}
+    button,a{font:inherit}.home{position:relative;width:min(100%,540px);min-height:100vh;margin:auto;overflow:hidden;padding-bottom:102px;background:#e8ebef;box-shadow:0 0 50px rgba(48,55,64,.16)}
+    .hero{position:relative;height:min(655px,121.5vw);max-height:655px;background:url('./assets/home-silver-clean-background.png') center top/100% auto no-repeat}
+    .hero::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:98px;background:linear-gradient(transparent,#e7eaee)}
+    .hero-star-chart{position:absolute;z-index:1;left:50%;top:39.5%;width:82%;height:auto;display:block;transform:translate(-50%,-50%);border-radius:50%;opacity:.76;mix-blend-mode:screen;pointer-events:none;filter:contrast(1.06) brightness(1.04);transform-origin:center;will-change:transform;animation:starChartEnter 3s cubic-bezier(.18,.78,.22,1) both,starChartOrbit 60s linear 3s infinite}
+    @keyframes starChartEnter{0%{transform:translate(-50%,-50%) scale(.015) rotate(-1080deg)}100%{transform:translate(-50%,-50%) scale(1) rotate(0deg)}}
+    @keyframes starChartOrbit{from{transform:translate(-50%,-50%) scale(1) rotate(0deg)}to{transform:translate(-50%,-50%) scale(1) rotate(360deg)}}
+    .hero-logo-glow{position:absolute;z-index:2;left:50%;top:22.5%;width:27%;aspect-ratio:531/956;transform:translateX(-50%);mix-blend-mode:screen;pointer-events:none;animation:logoGlowReveal 1.6s ease-out .5s both}
+    .hero-logo-glow i{position:absolute;left:50%;width:115%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.96) 0%,rgba(255,255,255,.78) 17%,rgba(247,249,252,.43) 39%,rgba(238,242,247,.16) 58%,transparent 76%);filter:blur(8px)}
+    .hero-logo-glow i:nth-child(1){top:8%}.hero-logo-glow i:nth-child(2){top:34%}.hero-logo-glow i:nth-child(3){top:59%}.hero-logo-glow i:nth-child(4){top:84%}
+    .hero-vertical-logo{position:absolute;z-index:3;left:50%;top:22.5%;width:32%;height:auto;display:block;transform:translateX(-50%);mix-blend-mode:multiply;pointer-events:none;filter:contrast(1.04) drop-shadow(0 1px 2px rgba(62,69,78,.18));animation:logoReveal 1.6s ease-out .5s both}
+    .hero-vertical-motto{position:absolute;z-index:4;left:58%;top:38.5%;margin:0;color:#737d86;font-family:"Microsoft YaHei","Microsoft YaHei UI",sans-serif;font-size:11px;font-weight:400;line-height:1;letter-spacing:8px;writing-mode:vertical-rl;text-orientation:upright;white-space:pre;text-shadow:0 1px 1px rgba(255,255,255,.8),0 0 7px rgba(255,255,255,.38);pointer-events:none;animation:mottoType 2.7s steps(9,end) 2.1s both}
+    @keyframes logoGlowReveal{0%{opacity:0;transform:translateX(-50%) scale(.78);filter:blur(18px)}55%{opacity:.72}100%{opacity:1;transform:translateX(-50%) scale(1);filter:none}}
+    @keyframes logoReveal{0%{opacity:0;transform:translateX(-50%) scale(.96);filter:blur(9px) contrast(.85)}100%{opacity:1;transform:translateX(-50%) scale(1);filter:contrast(1.04) drop-shadow(0 1px 2px rgba(62,69,78,.18))}}
+    @keyframes mottoType{0%{opacity:0;clip-path:inset(0 0 100% 0)}1%{opacity:1}100%{opacity:1;clip-path:inset(0 0 0 0)}}
+    @media(prefers-reduced-motion:reduce){.hero-star-chart,.hero-logo-glow,.hero-vertical-logo,.hero-vertical-motto{animation:none}.hero-star-chart{transform:translate(-50%,-50%)}.hero-logo-glow,.hero-vertical-logo{transform:translateX(-50%)}.hero-vertical-motto{opacity:1;clip-path:none}}
+    .menu{z-index:5}
+    .menu{position:absolute;z-index:2;right:8%;top:3.5%;width:42px;height:38px;border:0;background:transparent;display:grid;align-content:center;gap:7px;padding:4px;filter:drop-shadow(0 2px 3px #fff)}
+    .menu i{display:block;height:2px;border-radius:2px;background:#eef1f4;box-shadow:0 1px 2px #66717c}.menu i:nth-child(2){width:80%;justify-self:end}
+    .content{position:relative;z-index:3;margin-top:-37px;padding:0 27px 22px}
+    .glass{border:1px solid rgba(255,255,255,.82);background:linear-gradient(145deg,rgba(255,255,255,.82),rgba(230,234,239,.68));box-shadow:0 14px 30px rgba(69,78,89,.18),inset 0 1px 0 #fff;backdrop-filter:blur(19px) saturate(115%);-webkit-backdrop-filter:blur(19px) saturate(115%)}
+    .modules{display:grid;grid-template-columns:repeat(4,1fr);overflow:hidden;border-radius:19px}
+    .module{position:relative;min-width:0;padding:25px 5px 20px;color:var(--ink);text-align:center;text-decoration:none}
+    .open-tag{position:absolute;z-index:2;right:5px;top:6px;padding:3px 5px;border:1px solid rgba(255,245,206,.72);border-radius:7px 7px 7px 2px;background:linear-gradient(145deg,#d8bd78,#a98232);color:#fffaf0;font:6px/1.1 "Microsoft YaHei",sans-serif;letter-spacing:.3px;box-shadow:0 3px 8px rgba(117,86,29,.22),inset 0 1px 0 rgba(255,255,255,.5)}
+    .module+.module{border-left:1px solid var(--line)}
+    .module-icon{position:relative;width:58px;height:58px;margin:0 auto 17px;display:grid;place-items:center;border:1px solid #aeb5bd;border-radius:50%;color:#626a74;font:24px serif;box-shadow:inset 0 0 0 5px rgba(255,255,255,.5),0 3px 8px rgba(63,72,82,.1)}
+    .module-icon::before,.module-icon::after{content:"";position:absolute;inset:-4px;border:1px solid rgba(131,141,151,.28);border-radius:50%}.module-icon::after{inset:6px;border-style:dotted}
+    .module b{display:block;white-space:nowrap;font-size:14px;font-weight:600;letter-spacing:.5px}.module small{display:block;margin-top:7px;color:#69717b;white-space:nowrap;font-size:8px}.module em{display:block;width:16px;height:2px;margin:15px auto 0;background:#747c85;box-shadow:4px 0 0 #c2c7cc;font-style:normal}
+    .fortune{position:relative;min-height:210px;margin-top:18px;overflow:hidden;padding:28px 29px;border-radius:19px}
+    .fortune::after{content:"";position:absolute;z-index:0;inset:0;background:url('./assets/home-fortune-background.png') center/cover no-repeat;opacity:.72;pointer-events:none;-webkit-mask-image:radial-gradient(ellipse 105% 105% at 68% 50%,#000 0 58%,rgba(0,0,0,.76) 72%,rgba(0,0,0,.24) 88%,transparent 100%);mask-image:radial-gradient(ellipse 105% 105% at 68% 50%,#000 0 58%,rgba(0,0,0,.76) 72%,rgba(0,0,0,.24) 88%,transparent 100%)}
+    .fortune>*{position:relative;z-index:1}.fortune h2{margin:0 0 22px;font-size:17px;font-weight:500;letter-spacing:2px}.fortune h2::before{content:"✦";margin-right:8px;color:#77808a}.fortune p{margin:0;color:#5f6670;font-size:12px;line-height:2}.fortune cite{display:block;margin-top:15px;color:#676e77;font-size:11px;font-style:normal}.fortune a{display:inline-block;margin-top:28px;color:#555d67;font-size:12px;text-decoration:none}.fortune a::after{content:" ⟶";color:#8a929a}
+    .toast{position:fixed;z-index:50;left:50%;bottom:96px;transform:translate(-50%,12px);padding:9px 15px;border-radius:18px;background:rgba(57,64,73,.88);color:#fff;font:11px sans-serif;opacity:0;pointer-events:none;transition:.25s}.toast.show{opacity:1;transform:translate(-50%,0)}
+    @media(max-width:430px){.content{padding-inline:20px}.module{padding-inline:2px}.module-icon{width:52px;height:52px;font-size:21px}.module b{font-size:12px}.module small{font-size:7px}.fortune{min-height:194px;padding:24px}.hero{height:121vw}}
+    @media(max-width:360px){.content{padding-inline:14px}.module-icon{width:47px;height:47px}.module b{font-size:11px}.module small{font-size:6px}.fortune{padding-inline:21px}}
   </style>
 </head>
-<body><main>
-  <header class="home-head"><div class="home-brand"><div class="brand-mark">筮</div><div><p class="eyebrow">QING SHI JI</p><h1>青筮记</h1></div></div><button class="round-btn" aria-label="消息">◌</button></header>
-  <section class="welcome"><p class="eyebrow">玄门日课 · 今日宜静观</p><h2>见天地，见自己</h2><p>以古籍为根，以历法为尺。每一次推演，都保留清晰的时间口径与判断依据。</p><div class="today"><span id="solarDate">公历</span><span id="lunarDate">农历</span></div></section>
-  <div class="quick"><a href="/bazi.html"><span class="quick-icon">命</span><span><b>八字排盘</b><small>四柱 · 大运 · 神煞</small></span></a><a href="#" data-global-archives><span class="quick-icon">档</span><span><b>命理档案</b><small id="archiveCount">0 份已保存</small></span></a></div>
-  <section class="home-section"><div class="home-section-head"><h2>核心排盘</h2><a href="#">全部工具</a></div><div class="tool-groups">
-    <div class="tool-row"><div class="tool-row-label">命理</div><div class="tools">
-      <a class="tool" href="/chart.html"><span class="tag">已开放</span><span class="tool-icon">八</span><b>八字</b><small>子平命理</small></a>
-      <a class="tool" href="#" onclick="soon(event)"><span class="tool-icon">合</span><b>合盘</b><small>关系参合</small></a>
-      <a class="tool" href="#" onclick="soon(event)"><span class="tool-icon">紫</span><b>紫微</b><small>斗数命盘</small></a>
-      <a class="tool" href="#" onclick="soon(event)"><span class="tool-icon">七</span><b>七政</b><small>七政四余</small></a>
-    </div></div>
-    <div class="tool-row"><div class="tool-row-label">占卜</div><div class="tools">
-      <a class="tool" href="#" onclick="soon(event)"><span class="tool-icon">六</span><b>六爻</b><small>纳甲占断</small></a>
-      <a class="tool" href="#" onclick="soon(event)"><span class="tool-icon">梅</span><b>梅花</b><small>象数易学</small></a>
-      <a class="tool" href="#" onclick="soon(event)"><span class="tool-icon">奇</span><b>奇门</b><small>时空遁甲</small></a>
-      <a class="tool" href="#" onclick="soon(event)"><span class="tool-icon">壬</span><b>六壬</b><small>大六壬</small></a>
-    </div></div>
-    <div class="tool-row"><div class="tool-row-label">工具</div><div class="tools">
-      <a class="tool" href="#" onclick="soon(event)"><span class="tool-icon">历</span><b>黄历</b><small>节气择日</small></a>
-      <a class="tool" href="#" onclick="soon(event)"><span class="tool-icon">名</span><b>取名</b><small>五行用字</small></a>
-      <a class="tool" href="#" onclick="soon(event)"><span class="tool-icon">罗</span><b>罗盘</b><small>方位工具</small></a>
-      <a class="tool" href="#" onclick="soon(event)"><span class="tool-icon">其</span><b>其他</b><small>其他工具</small></a>
-    </div></div>
-  </div></section>
-  <section class="home-section"><div class="home-section-head"><h2>最近使用</h2><a href="#" data-global-archives>档案管理</a></div><div class="recent"><div class="recent-symbol">乾</div><div class="recent-info"><b id="recentName">暂无命理档案</b><p id="recentMeta">录入出生信息后，可在这里快速继续</p></div><a href="/bazi.html">进入</a></div></section>
-  <section class="home-section"><div class="home-section-head"><h2>筮记一言</h2></div><div class="wisdom"><b>“先观月令，论格推详。”</b><br>神煞只作旁证，格局、气势、调候与岁运仍是判断主线。</div></section>
-  <footer>青筮记 · 传统文化研究工具</footer>
-</main>
-<nav class="bottom-nav"><a class="active" href="/"><span>⌂</span>首页</a><a href="#" data-global-archives><span>▤</span>档案</a><a href="/bazi.html"><span>☷</span>应用</a><a href="#" onclick="soon(event)"><span>○</span>我的</a></nav>
-<script>
-const now=new Date(), pad=n=>String(n).padStart(2,'0');
-document.querySelector('#solarDate').textContent=`公历 ${now.getFullYear()}.${pad(now.getMonth()+1)}.${pad(now.getDate())}`;
-try{document.querySelector('#lunarDate').textContent=new Intl.DateTimeFormat('zh-CN-u-ca-chinese',{month:'long',day:'numeric'}).format(now)}catch{}
-const archives=JSON.parse(localStorage.getItem('qingshiji-archives')||'[]');
-document.querySelector('#archiveCount').textContent=`${archives.length} 份已保存`;
-if(archives[0]){document.querySelector('#recentName').textContent=archives[0].name;document.querySelector('#recentMeta').textContent=`${archives[0].gender==='男'?'乾造':'坤造'} · ${archives[0].location}`}
-function soon(e){e.preventDefault();alert('该工具正在整理古籍规则，后续开放。')}
-</script><script src="/app/archive-manager.js"></script></body></html>
+<body class="home-page">
+  <main class="home">
+    <section class="hero" aria-label="青筮问道首页主视觉"><img class="hero-star-chart" src="./assets/home-star-chart-glow.png" alt="" aria-hidden="true"><span class="hero-logo-glow" aria-hidden="true"><i></i><i></i><i></i><i></i></span><img class="hero-vertical-logo" src="./assets/home-vertical-logo.png" alt="青筮问道"><p class="hero-vertical-motto">青衣筮卜　窥天问道</p><button class="menu" type="button" aria-label="打开菜单" onclick="soon()"><i></i><i></i><i></i></button></section>
+    <div class="content">
+      <section class="modules glass" id="applications" aria-label="核心功能">
+        <a class="module" href="./chart.html"><span class="open-tag">已开放</span><span class="module-icon">|||</span><b>四柱八字</b><small>命理精批 · 运势详解</small><em></em></a>
+        <a class="module" href="./liuyao.html"><span class="open-tag">已开放</span><span class="module-icon">☷</span><b>金钱六爻</b><small>占卜问事 · 吉凶预测</small><em></em></a>
+        <a class="module" href="./hepan.html"><span class="open-tag">已开放</span><span class="module-icon">合</span><b>八字合盘</b><small>双盘参合 · 关系详解</small><em></em></a>
+        <a class="module" href="#" onclick="soon(event)"><span class="module-icon">◉</span><b>AI问道</b><small>智能解惑 · 指引人生</small><em></em></a>
+      </section>
+      <section class="fortune glass">
+        <h2>今日运势</h2>
+        <p>天行健，君子以自强不息；<br>地势坤，君子以厚德载物。</p>
+        <cite>——《周易·乾坤》</cite>
+        <a href="#" onclick="soon(event)">查看今日运势</a>
+      </section>
+    </div>
+  </main>
+  <nav class="bottom-nav" aria-label="底部导航">
+    <a class="active" href="./"><span>⌂</span>首页</a>
+    <a href="#" data-global-archives><span>▤</span>档案</a>
+    <a href="./applications.html"><span>◇</span>应用</a>
+    <a href="#" onclick="soon(event)"><span>♙</span>我的</a>
+  </nav>
+  <div class="toast" id="toast">该功能正在整理中</div>
+  <script>
+    function soon(e){if(e)e.preventDefault();const t=document.querySelector('#toast');t.classList.add('show');clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.classList.remove('show'),1600)}
+  </script>
+  <script src="./app/archive-storage.js"></script><script src="./app/archive-manager.js"></script>
+</body>
+</html>

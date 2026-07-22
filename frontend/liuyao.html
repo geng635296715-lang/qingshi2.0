@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="description" content="青筮问道六爻占卜：系统摇卦、手动起卦、直接排卦与六十四卦参详。">
+  <title>六爻占卜｜青筮问道</title>
+  <link rel="preload" href="./app/liuyao.css?v=20260722-ui15" as="style">
+  <link rel="stylesheet" href="./app/globals.css?v=20260722-neutral3">
+  <link rel="stylesheet" href="./app/liuyao.css?v=20260722-ui15">
+</head>
+<body>
+<main class="liuyao-main">
+  <header class="ly-head">
+    <a class="back" href="./" aria-label="返回首页">‹</a>
+    <div><p class="eyebrow">NAN JIA DIVINATION</p><h1>六爻占卜</h1><p class="subtitle">一事一占 · 无事不占 · 心诚则灵</p></div>
+    <span class="head-seal" aria-hidden="true">易</span>
+  </header>
+
+  <section class="ly-hero">
+    <div class="hero-copy"><span>青筮 · 纳甲</span><h2>问事起卦，观变知机</h2><p>以三枚铜钱成六爻，自下而上立本卦；老阴老阳为动，动则成变卦。</p></div>
+    <div class="hero-gua" aria-hidden="true"><i></i><i class="yin"></i><i></i><i></i><i class="yin"></i><i></i></div>
+  </section>
+
+  <section class="card ask-card">
+    <label for="question">所问之事 <small>问题越明确，取用与参详越集中</small></label>
+    <textarea id="question" maxlength="80" placeholder="例如：这次工作调整是否适合在本月推进？"></textarea>
+    <div class="ask-meta"><span id="todayText"></span><span>仅保存在本机</span></div>
+  </section>
+
+  <section class="method-wrap" aria-label="起卦方式">
+    <div class="method-tabs" role="tablist">
+      <button class="active" data-method="auto" role="tab" aria-selected="true">系统摇卦<small>三钱六掷</small></button>
+      <button data-method="manual" role="tab" aria-selected="false">手动起卦<small>录入结果</small></button>
+      <button data-method="direct" role="tab" aria-selected="false">直接排卦<small>已知卦象</small></button>
+      <button data-method="library" role="tab" aria-selected="false">六十四卦<small>卦象全解</small></button>
+    </div>
+
+    <div class="method-panel active" data-panel="auto">
+      <div class="auto-layout"><div class="auto-coins"><div class="coin-stage" aria-hidden="true"><span class="coin-front"><i></i></span><span class="coin-front"><i></i></span><span class="coin-front"><i></i></span></div><p>静心默念所问之事，点击一次完成六次掷钱。得出结果</p><button class="cast-button" id="autoCast" aria-label="点击龟甲开始起卦"><span>龟甲</span><small>点击起卦</small></button></div><div class="cast-progress" id="castProgress" aria-live="polite"><header><span id="castStatus">尚未起卦 · 初爻待定</span><small id="castRound">0 / 6</small></header><div class="cast-lines" id="castLines"></div></div></div>
+    </div>
+
+    <div class="method-panel" data-panel="manual" hidden>
+      <details class="manual-rules">
+        <summary><span><b>手动起卦规则</b><small>铜钱计数 · 六爻次序 · 动爻判定</small></span><i aria-hidden="true"></i></summary>
+        <div class="manual-rules-body">
+          <p><b>一、静心定问</b>一次只问一件具体的事。起卦前将问题写在上方，静心片刻，不因结果不合心意而反复起卦。</p>
+          <p><b>二、三钱定一爻</b>每次同时掷三枚铜钱，正面记3、背面记2，把三枚铜钱的数值相加。</p>
+          <div class="coin-rule-grid"><span><b>6 · 老阴</b><small>阴爻，动</small></span><span><b>7 · 少阳</b><small>阳爻，静</small></span><span><b>8 · 少阴</b><small>阴爻，静</small></span><span><b>9 · 老阳</b><small>阳爻，动</small></span></div>
+          <p><b>三、六次成卦</b>实际投掷从初爻开始，依次得到二、三、四、五、上爻，共掷六次。本页按卦象阅读习惯自上而下显示，请把每次结果填入对应爻位。</p>
+          <p><b>四、动则有变</b>老阴与老阳为动爻：老阴变阳，老阳变阴；六爻翻变后形成变卦。7与8为静爻，阴阳不变。</p>
+        </div>
+      </details>
+      <p class="panel-note">依卦象自上而下录入，每爻选择三枚铜钱的合数。</p>
+      <div class="manual-grid" id="manualGrid"></div>
+      <button class="primary" id="manualCast">据此排卦</button>
+    </div>
+
+    <div class="method-panel" data-panel="direct" hidden>
+      <label>选择本卦<select id="directHexagram"><option value="">正在载入六十四卦…</option></select></label>
+      <fieldset class="moving-field"><legend>动爻 <small>可多选，无动爻则为静卦</small></legend><div id="movingChecks"></div></fieldset>
+      <button class="primary" id="directCast">据此排卦</button>
+    </div>
+    <div class="method-panel library-panel" data-panel="library" hidden>
+      <div class="library-head"><div><span>易经卦序</span><h3>六十四卦 · 卦象全解</h3></div><label class="library-search"><span>搜索</span><input id="hexagramSearch" type="search" placeholder="卦名、序号或上卦下卦" autocomplete="off"></label></div>
+      <div class="hexagram-grid" id="hexagramGrid" aria-label="六十四卦列表"></div>
+      <article class="hexagram-detail" id="hexagramDetail" hidden>
+        <header><div><span id="detailNo">第 1 卦</span><h3 id="detailName">乾为天</h3><small id="detailMeta">乾宫 · 金</small></div><div class="detail-lines" id="detailLines" aria-hidden="true"></div></header>
+        <div class="detail-core"><p><b>卦势</b><span id="detailSituation">—</span></p><p><b>持守</b><span id="detailPrinciple">—</span></p><p><b>所戒</b><span id="detailRisk">—</span></p></div>
+        <p class="detail-reading" id="detailReading">—</p>
+      </article>
+      <details class="hexagram-explain library-explain" id="libraryHexagramExplain" hidden>
+        <summary><span><small>HEXAGRAM COMMENTARY</small><b>卦象详解</b></span><em id="libraryExplainGuaName">—</em><i aria-hidden="true"></i></summary>
+        <div class="hexagram-explain-body"><div class="explain-guide"><span>六章参详</span><p>内容仅对应当前选中的易经卦序卡片。</p></div><div id="libraryExplainSections"></div><div id="libraryTraditionalExplain"></div><p class="explain-note">此处仅作六十四卦资料参详，不读取或改变排卦结果。</p></div>
+      </details>
+    </div>
+  </section>
+
+  <section id="result" class="result" hidden aria-live="polite">
+    <header class="result-head"><div><p class="eyebrow">HEXAGRAM READING</p><h2 id="resultQuestion">此占</h2></div><button id="saveCast">存入卦记</button></header>
+    <div class="plate-card">
+      <div class="gua-column"><span class="gua-role">本卦</span><h3 id="baseName">—</h3><small id="baseMeta">—</small><div class="six-lines" id="baseLines"></div></div>
+      <div class="change-arrow"><span id="movingLabel">静卦</span><b>→</b></div>
+      <div class="gua-column"><span class="gua-role">变卦</span><h3 id="changedName">—</h3><small id="changedMeta">—</small><div class="six-lines" id="changedLines"></div></div>
+    </div>
+    <div class="relation-strip" id="relations"></div>
+    <div class="reading-focus" role="group" aria-label="参详卦体切换"><span>当前参详</span><button data-focus="base">本卦</button><button class="active" data-focus="changed">变卦</button></div>
+    <article class="reading-card key-reading"><span>卦意提要</span><aside class="focus-gua" aria-label="当前参详卦象"><div class="focus-mini-lines" id="focusMiniLines"></div><b id="focusGuaName">—</b><small id="focusGuaFormation">—</small></aside><h3 id="situation">—</h3><p id="principle">—</p><div class="risk"><b>所戒</b><span id="risk">—</span></div></article>
+    <article class="reading-card"><div class="reading-title"><span>分类参详</span><select id="readingCategory"><option>大象</option><option>运势</option><option>事业</option><option>经商</option><option>求名</option><option>婚恋</option><option>决策</option></select></div><p id="readingText">—</p></article>
+    <details class="hexagram-explain" id="hexagramExplain">
+      <summary><span><small>HEXAGRAM COMMENTARY</small><b>卦象详解</b></span><em id="explainGuaName">—</em><i aria-hidden="true"></i></summary>
+      <div class="hexagram-explain-body"><div class="explain-guide"><span>六章参详</span><p>依次阅读原文、呈象与历代解读。</p></div><div id="explainSections"></div><div id="traditionalExplain"></div><p class="explain-note">古籍原文、白话解释与署名解读分层呈现，内容用于传统文化研习与决策启发。</p></div>
+    </details>
+    <button class="secondary" id="newCast">重新起卦</button>
+  </section>
+  <footer>青筮问道 · 六爻纳甲占断</footer>
+</main>
+<nav class="bottom-nav"><a href="./"><span>⌂</span>首页</a><a href="#" id="historyLink"><span>▤</span>卦记</a><a class="active" href="./applications.html"><span>☷</span>应用</a><a href="#"><span>○</span>我的</a></nav>
+<script src="./app/liuyao.js"></script>
+</body>
+</html>
