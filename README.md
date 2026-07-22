@@ -46,6 +46,14 @@ npm run check
 
 其中 `check:pages` 会检查 GitHub Pages 所需的相对路径、静态资源和 JSON 数据。
 
+## Cloudflare Pages
+
+- 构建命令：`npm run build`
+- 构建输出目录：`dist`
+- Node.js 版本：18 或更高版本
+
+构建过程会先检查静态资源与数据，再把 `frontend/` 完整复制到 `dist/`。
+
 ## 发布到 GitHub Pages
 
 1. 新建 GitHub 仓库并把本目录内容推送到 `main` 分支。
@@ -61,4 +69,3 @@ npm run check
 - GitHub Pages 是静态托管，无法保存服务端档案，也不会上传个人出生资料。
 - 八字神煞、合盘基础数据和六爻资料已经放入 `frontend/api/`，静态部署后可直接读取。
 - 可选的 AI 合盘增强需要本地后端及相应环境变量；静态站点会自动使用内置分析结果。
-

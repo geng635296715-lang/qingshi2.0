@@ -7,6 +7,7 @@
   "scripts": {
     "start": "node backend/server.mjs",
     "dev": "node --watch backend/server.mjs",
+    "build": "node tools/build-static.mjs",
     "check": "node --check backend/server.mjs && node --check frontend/app/archive-manager.js && node --check frontend/app/bazi-chart.js && node tools/verify-static.mjs",
     "check:pages": "node tools/verify-static.mjs"
   },
