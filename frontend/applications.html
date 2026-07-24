@@ -12,7 +12,7 @@
     @media(max-width:380px){.tools{gap:6px}.tool{padding-inline:1px}.welcome{padding:21px 18px}}
   </style>
 </head>
-<body><main>
+<body class="applications-page"><main class="applications-shell">
   <header class="app-head"><div class="app-brand"><div class="brand-mark">筮</div><div><p>QING SHI WEN DAO</p><img class="app-brand-logo" src="./assets/qing-logo-horizontal.png" alt="青筮问道"></div></div><button class="round-btn" aria-label="消息" onclick="soon(event)">◇</button></header>
   <section class="welcome"><p class="eyebrow">玄门日课 · 今日宜静观</p><h2>见天地，见自己</h2><p>以古籍为根，以历法为尺。每一次推演，都保留清晰的时间口径与判断依据。</p><div class="today"><span id="solarDate">公历</span><span id="lunarDate">农历</span></div></section>
   <section class="section"><div class="section-head"><h2>核心排盘</h2><a href="#tools">全部工具</a></div><div class="tool-groups" id="tools">
@@ -44,4 +44,4 @@
 const now=new Date(),pad=n=>String(n).padStart(2,'0');document.querySelector('#solarDate').textContent=`公历 ${now.getFullYear()}.${pad(now.getMonth()+1)}.${pad(now.getDate())}`;try{document.querySelector('#lunarDate').textContent=new Intl.DateTimeFormat('zh-CN-u-ca-chinese',{month:'long',day:'numeric'}).format(now)}catch{}
 const archives=JSON.parse(localStorage.getItem('qingshiji-archives')||'[]');if(archives[0]){document.querySelector('#recentName').textContent=archives[0].name;document.querySelector('#recentMeta').textContent=`${archives[0].gender||''} · ${archives[0].location||''}`}
 function soon(e){if(e)e.preventDefault();alert('该工具正在整理古籍规则，后续开放。')}
-</script><script src="./app/archive-storage.js"></script><script src="./app/archive-manager.js"></script></body></html>
+</script><script src="./app/archive-storage.js"></script><script src="./app/archive-manager.js"></script><script src="./app/viewport-mode.js"></script></body></html>

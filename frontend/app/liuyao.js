@@ -86,6 +86,7 @@ function render(values){
   $('#relations').innerHTML=`<div><span>世应</span><b>世${base.shi_line} · 应${base.ying_line}</b></div><div><span>互卦</span><b>${byNo(base.mutual_no)?.name||'—'}</b></div><div><span>错 / 综</span><b>${byNo(base.opposite_no)?.name||'—'} · ${byNo(base.reversed_no)?.name||'—'}</b></div>`;
   updateFocusReading();
   $('#result').hidden=false;$('#result').scrollIntoView({behavior:'smooth',block:'start'});
+  document.dispatchEvent(new CustomEvent('qingshi:liuyao-rendered'));
 }
 
 function updateReading(reading=readingFor(state.current?.base?.king_wen_no)){$('#readingText').textContent=reading?.readings?.[$('#readingCategory').value]||'数据库暂无此项参详。'}
@@ -137,3 +138,15 @@ setupControls();
 setupCastProgress();
 const now=new Date();$('#todayText').textContent=new Intl.DateTimeFormat('zh-CN',{year:'numeric',month:'long',day:'numeric',hour:'2-digit',minute:'2-digit'}).format(now);
 loadData().catch(()=>{alert('六爻数据库载入失败，请刷新页面重试。');$('#directHexagram').innerHTML='<option>载入失败</option>'});
+
+window.QingshiLiuyaoWorkbench={
+  restoreCast(item){
+    if(!item?.values?.length)return;
+    $('#question').value=item.question||'';
+    render(item.values.map(Number));
+    if(item.focus&&state.current){
+      state.current.focus=item.focus;
+      updateFocusReading();
+    }
+  }
+};

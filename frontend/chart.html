@@ -25,6 +25,8 @@ body .profile-card-actions button.profile-status{min-height:28px;padding:0 9px;w
 .empty-chart-hint{padding:25px 18px}
 .empty-content-tabs{margin-top:10px}
 .empty-content-panel .empty-chart-hint{min-height:132px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.life-domain-reading .section-head{align-items:flex-start}.life-domain-reading .section-head>div p{margin:4px 0 0;color:#8b949c;font-size:9px}.life-reading-intro{margin:-3px 4px 14px;padding:11px 12px;border-radius:12px;background:#f1f4f6;color:#77818a;font-size:10px;line-height:1.7}.life-domain-grid{display:grid;gap:10px}.life-domain-grid article{padding:14px;border:1px solid #e1e6ea;border-radius:16px;background:rgba(255,255,255,.72);box-shadow:0 6px 16px rgba(66,76,86,.07)}.life-domain-grid article>header{display:flex;align-items:center;gap:8px;margin-bottom:10px}.life-domain-grid article>header i{width:27px;height:27px;display:grid;place-items:center;border-radius:8px;background:#e4e9ed;color:#66717a;font-size:11px;font-style:normal;font-weight:800}.life-domain-grid article>header b{color:#505a63;font-size:14px}.life-domain-grid article>div{padding:9px 10px;border-radius:11px;background:#f6f8f9}.life-domain-grid article>div+div{margin-top:7px}.life-domain-grid article>div span{display:block;margin-bottom:4px;color:#8a949c;font-size:8px;letter-spacing:1px}.life-domain-grid article>div p{margin:0;color:#68737c;font-size:10px;line-height:1.75}.life-domain-grid article .domain-advice{background:#e9edf0}.life-domain-grid article .domain-advice span{color:#69747d;font-weight:700}
+@media(min-width:480px){.life-domain-grid{grid-template-columns:1fr 1fr}.life-domain-grid article:last-child{grid-column:1/-1}}
 </style>
 </head>
 <body>
@@ -54,7 +56,11 @@ body .profile-card-actions button.profile-status{min-height:28px;padding:0 9px;w
 </script>
 <script src="./app/bazi-chart.js">
 </script>
+<script src="./app/bazi-day-pillar-analysis.js">
+</script>
 <script src="./app/archive-manager.js">
 </script>
+<script src="./app/viewport-mode.js"></script>
+<script src="./app/web-workbench.js"></script>
 </body>
 </html>
