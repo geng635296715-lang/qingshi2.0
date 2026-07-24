@@ -9,10 +9,15 @@
     "dev": "node --watch backend/server.mjs",
     "build": "node tools/build-static.mjs",
     "check": "node --check backend/server.mjs && node --check frontend/app/archive-manager.js && node --check frontend/app/bazi-chart.js && node tools/verify-static.mjs",
-    "check:pages": "node tools/verify-static.mjs"
+    "check:pages": "node tools/verify-static.mjs",
+    "deploy": "wrangler deploy",
+    "preview": "wrangler dev"
   },
   "engines": {
     "node": ">=18"
   },
-  "license": "UNLICENSED"
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "wrangler": "^4.114.0"
+  }
 }

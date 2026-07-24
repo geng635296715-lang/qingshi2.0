@@ -11,3 +11,8 @@ coverage/
 dist/
 backend/storage/archives.json
 backend/storage/archives.json.tmp
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
